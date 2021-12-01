@@ -72,7 +72,6 @@ export default {
 
 .hero-section {
     margin: 0;
-
     &__inner {
         width: 100%;
     }

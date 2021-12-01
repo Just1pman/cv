@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "SF Mono";
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  unicode-range: U+000-5FF;
+  src: local("SF Mono"), url("/fonts/sfmono/SFMonoRegular.otf") format("otf");
+}
+
+@font-face {
+  font-family: "Calibre";
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  unicode-range: U+000-5FF;
+  src: local("Calibre"), url("/fonts/calibre/Calibre-Regular.ttf") format("otf");
+}

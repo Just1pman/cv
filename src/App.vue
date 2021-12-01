@@ -1,16 +1,16 @@
 <template>
     <div id="app">
-        <Home></Home>
+        <Frontend></Frontend>
     </div>
 </template>
 
 <script>
-import Home from "@/views/Home";
+import Frontend from "@/views/base/Frontend";
 
 export default {
     name: "MainHeader",
     components: {
-        Home
+        Frontend
     }
 }
 </script>

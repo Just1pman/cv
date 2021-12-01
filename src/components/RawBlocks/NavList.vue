@@ -26,15 +26,13 @@ export default {
     counter-reset: item;
 
     font-size: 13px;
-
     color: #ccd6f6;
-    font-family: $font_mono;
 }
 
 .list-link {
     display: inline-block;
-    padding: 10px;
-    margin: 0 5px;
+    padding: 10px 15px;
+    margin: 0;
     text-decoration: none;
     color: inherit;
 }
@@ -44,6 +42,5 @@ export default {
     content: "0" counter(item) ".";
     margin-right: 5px;
     color: $green_color;
-
 }
 </style>

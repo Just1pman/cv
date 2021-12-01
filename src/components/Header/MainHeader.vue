@@ -1,36 +1,123 @@
 <template>
-    <header class="header">
-        <svg width="43" height="43" viewBox="0 0 63 63" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M1.16077 0.455995H7.18077L6.40677 49.046H1.93477L1.16077 0.455995ZM4.08477 62.118C3.11011 62.118 2.25011 61.7453 1.50477 61C0.816774 60.312 0.472774 59.4807 0.472774 58.506C0.472774 57.474 0.816774 56.614 1.50477 55.926C2.25011 55.1807 3.11011 54.808 4.08477 54.808C5.11677 54.808 5.97677 55.1807 6.66477 55.926C7.41011 56.614 7.78277 57.474 7.78277 58.506C7.78277 59.4807 7.41011 60.312 6.66477 61C5.97677 61.7453 5.11677 62.118 4.08477 62.118ZM27.0689 6.992C25.9223 6.992 25.0623 7.078 24.4889 7.25C23.9729 7.36467 23.5143 7.62266 23.1129 8.024C22.7689 8.368 22.4536 8.85533 22.1669 9.486C21.9376 10.0593 21.8229 10.604 21.8229 11.12L17.0929 11.034C17.2076 8.33933 18.0676 6.18933 19.6729 4.584C20.5329 3.78133 21.5363 3.208 22.6829 2.86399C23.8869 2.46266 25.3776 2.23333 27.1549 2.176H45.6449C50.8049 2.176 54.8469 3.86733 57.7709 7.25C60.6949 10.6327 62.1569 15.0187 62.1569 20.408C62.1569 24.4787 61.2969 27.9187 59.5769 30.728C57.8569 33.48 55.5636 35.544 52.6969 36.92C49.8303 38.2387 46.6483 38.898 43.1509 38.898C41.6603 38.898 39.5389 38.7547 36.7869 38.468V33.824C39.4816 33.996 41.4596 34.082 42.7209 34.082C52.2383 34.082 56.9969 29.5527 56.9969 20.494C56.9969 16.022 55.8789 12.668 53.6429 10.432C51.4069 8.13867 48.3396 6.992 44.4409 6.992H32.2289V61.086H27.0689V6.992Z"
-                fill="#64FFDA"/>
-        </svg>
-        <NavList></NavList>
+    <header class="main-header" :style="isOpen ? 'position: absolute' : ''">
+        <img src="@/assets/img/logo.svg" alt="site logo">
+        <div class="right-side-wrapper">
+            <NavList></NavList>
+            <BaseButton>Resume</BaseButton>
+        </div>
+
+        <div class="mobile-menu">
+            <MenuButton v-on:changeStateMenu="changeStateMenu"></MenuButton>
+            <c-drawer :isOpen="isOpen" placement="right" :on-close="close">
+                <c-drawer-overlay />
+                <c-drawer-content bg="#112240" :maxW="400">
+                    <c-drawer-body  py="100">
+                        <CFlex direction="column" align="center" justify="center">
+                            <NavList></NavList>
+                            <BaseButton>Resume</BaseButton>
+                        </CFlex>
+                    </c-drawer-body>
+                </c-drawer-content>
+            </c-drawer>
+        </div>
     </header>
 </template>
 
 <script>
 import NavList from '@/components/RawBlocks/NavList'
+import BaseButton from "@/components/RawBlocks/BaseButton";
+import MenuButton from "@/components/Header/MenuButton";
+import {
+    CDrawer,
+    CDrawerBody,
+    CDrawerOverlay,
+    CDrawerContent,
+    CFlex,
+} from '@chakra-ui/vue';
 
 export default {
     name: "MainHeader",
+    data() {
+        return {
+            isOpen: false
+        }
+    },
+    methods: {
+      changeStateMenu() {
+          this.isOpen = !this.isOpen;
+      },
+      close() {
+          this.isOpen = false
+      }
+    },
+
     components: {
-        NavList
+        NavList,
+        BaseButton,
+        CDrawer,
+        CDrawerBody,
+        CDrawerOverlay,
+        CDrawerContent,
+        MenuButton,
+        CFlex,
     }
 }
 </script>
 
 <style scoped lang="scss">
-.header {
+
+.main-header {
+    box-sizing: border-box;
+    height: $header_height;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 50px;
-    background-color: rgba(10, 25, 47, 0.85);
+    padding: 15px 50px;
     position: fixed;
-    height: $header_height;
     top: 0;
-    box-sizing: border-box;
-    width: 100%;
+
+    background-color: $background-color;
+    font-family: $font_mono;
+
+    @include media_screen($tablet-screen) {
+        padding: 15px 25px;
+    }
+
+    .menu-button {
+        display: none;
+        margin-right: -10px;
+        @include media_screen($tablet-screen) {
+            display: block;
+        }
+    }
+
+    .mobile-menu {
+        display: none;
+
+        &__list >>> .list {
+            flex-direction: column;
+        }
+
+        @include media_screen($tablet-screen) {
+            display: block;
+        }
+    }
+}
+
+.right-side-wrapper {
+    display: flex;
+    @include media_screen($tablet-screen) {
+        display: none;
+    }
+}
+
+.mobile-menu::v-deep .list {
+    display: block;
+}
+
+.main-header::v-deep .resume-button {
+    margin-left: 15px;
+    font-size: 13px;
 }
 </style>

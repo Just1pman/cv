@@ -62,6 +62,7 @@ export default {
             margin-bottom: 15px;
         }
         &-link {
+            width: 100%;
             &::before {
                 display: block;
                 margin: 0;

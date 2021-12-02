@@ -1,7 +1,6 @@
 <template>
     <header class="main-header animate__animated animate__faster"
-            :class="!isShowHeader ? 'animate__fadeOutUp' : 'animate__fadeInDown'"
-            :style="isOpenedMenu ? 'position: absolute' : ''"
+            :class="!isShowHeader ? 'animate__fadeOutUp' : ''"
     >
         <img src="@/assets/img/logo.svg" alt="site logo">
         <div class="right-side-wrapper">
@@ -13,11 +12,11 @@
             <MenuButton></MenuButton>
             <c-drawer :isOpen="isOpenedMenu" placement="right" :on-close="close">
                 <c-drawer-overlay/>
-                <c-drawer-content bg="#112240" maxW="75%">
+                <c-drawer-content bg="#112240" w="75%" maxW="400">
                     <c-drawer-body py="30" display="flex" align-items="center" justify-content="space-between">
                         <CFlex direction="column" w="100%">
                             <NavList classList="menu"></NavList>
-                            <BaseButton>Resume</BaseButton>
+                            <BaseButton classList="menu">Resume</BaseButton>
                         </CFlex>
                     </c-drawer-body>
                 </c-drawer-content>

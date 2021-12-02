@@ -1,6 +1,7 @@
 <template>
     <button
         class="resume-button"
+        :class="classList"
     >
         <slot></slot>
     </button>
@@ -13,6 +14,9 @@ export default {
         return {
         }
     },
+    props: {
+        classList: String
+    }
 }
 </script>
 
@@ -24,5 +28,12 @@ export default {
 
     color: $green_color;
     border: 1px solid $green_color;
+}
+
+.menu {
+    &.resume-button {
+        margin: 0 auto;
+        padding: 15px 50px;
+    }
 }
 </style>

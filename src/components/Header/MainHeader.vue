@@ -1,6 +1,7 @@
 <template>
     <header class="main-header animate__animated animate__faster"
             :class="!isShowHeader ? 'animate__fadeOutUp' : ''"
+            :style="isOpenedMenu ? 'position: absolute' : ''"
     >
         <img src="@/assets/img/logo.svg" alt="site logo">
         <div class="right-side-wrapper">

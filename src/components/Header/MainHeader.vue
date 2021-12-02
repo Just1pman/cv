@@ -1,7 +1,7 @@
 <template>
-    <header class="main-header animate__animated"
+    <header class="main-header animate__animated animate__faster"
             :class="!isShowHeader ? 'animate__fadeOutUp' : 'animate__fadeInDown'"
-            :style="(isOpenedMenu ? 'position: absolute' : '') "
+            :style="isOpenedMenu ? 'position: absolute' : ''"
     >
         <img src="@/assets/img/logo.svg" alt="site logo">
         <div class="right-side-wrapper">
@@ -13,10 +13,10 @@
             <MenuButton></MenuButton>
             <c-drawer :isOpen="isOpenedMenu" placement="right" :on-close="close">
                 <c-drawer-overlay/>
-                <c-drawer-content bg="#112240" :maxW="400">
-                    <c-drawer-body py="100">
-                        <CFlex direction="column" align="center" justify="center">
-                            <NavList></NavList>
+                <c-drawer-content bg="#112240" maxW="75%">
+                    <c-drawer-body py="30" display="flex" align-items="center" justify-content="space-between">
+                        <CFlex direction="column" w="100%">
+                            <NavList classList="menu"></NavList>
                             <BaseButton>Resume</BaseButton>
                         </CFlex>
                     </c-drawer-body>
@@ -102,7 +102,8 @@ export default {
 
     .menu-button {
         display: none;
-        margin-right: -10px;
+        position: relative;
+        right: -10px;
         @include media_screen($tablet-screen) {
             display: block;
         }

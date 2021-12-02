@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <ol class="list">
+        <ol class="list" :class="classList">
             <li class="list-item">
                 <a class="list-link" href="/#about">About</a>
             </li>
@@ -16,7 +16,10 @@
 
 <script>
 export default {
-    name: "NavList"
+    name: "NavList",
+    props: {
+        classList: String
+    }
 }
 </script>
 
@@ -42,5 +45,28 @@ export default {
     content: "0" counter(item) ".";
     margin-right: 5px;
     color: $green_color;
+}
+
+.menu {
+    &.list {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 50px;
+        font-family: $font_mono;
+
+        font-size: clamp($fz-sm, 4vw, $fz-lg);;
+    }
+
+    .list {
+        &-item {
+            margin-bottom: 15px;
+        }
+        &-link {
+            &::before {
+                display: block;
+                margin: 0;
+            }
+        }
+    }
 }
 </style>

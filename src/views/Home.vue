@@ -63,14 +63,6 @@ export default {
         return {
         }
     },
-    // created() {
-    //     window.addEventListener('scroll', this.scrollHandler)
-    // },
-    // methods: {
-    //     scrollHandler() {
-    //        this.isShowHeader = window.pageYOffset === 0
-    //     },
-    // }
 }
 </script>
 

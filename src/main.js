@@ -12,7 +12,7 @@ Vue.use(Chakra)
 new Vue({
     router,
     store,
-    globalStyles,
     animateCss,
+    globalStyles,
     render: (h) => h(CThemeProvider, [h(CReset), h(App)])
 }).$mount('#app')

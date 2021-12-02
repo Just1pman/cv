@@ -59,6 +59,19 @@
 
 export default {
     name: 'Home',
+    data() {
+        return {
+            isShowHeader: true
+        }
+    },
+    created() {
+        window.addEventListener('scroll', this.scrollHandler)
+    },
+    methods: {
+        scrollHandler() {
+           this.isShowHeader = window.pageYOffset === 0
+        },
+    }
 }
 </script>
 

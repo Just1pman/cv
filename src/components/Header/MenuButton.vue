@@ -1,6 +1,10 @@
 <template>
     <div class="menu-button">
-        <input type="checkbox" id="togglenav" class="menu-trigger hidden" v-on:change="changeStateMenu">
+        <input type="checkbox"
+               id="togglenav"
+               class="menu-trigger hidden"
+               @change="changeStateMenu"
+               :checked="isOpenedMenu">
         <label for="togglenav" class="burger-wrapper">
             <div class="hamburger"></div>
         </label>
@@ -8,13 +12,21 @@
 </template>
 
 <script>
+import {mapMutations, mapState} from 'vuex'
+
+
 export default {
     name: "MenuButton",
     methods: {
-        changeStateMenu: function () {
-            this.$emit('changeStateMenu', 'carrier');
-        }
+        ...mapMutations([
+           'changeStateMenu'
+        ]),
     },
+    computed: {
+        ...mapState([
+            'isOpenedMenu'
+        ])
+    }
 }
 </script>
 

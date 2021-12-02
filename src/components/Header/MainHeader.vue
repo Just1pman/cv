@@ -1,5 +1,5 @@
 <template>
-    <header class="main-header" :style="isOpen ? 'position: absolute' : ''">
+    <header class="main-header" :style="(isOpenedMenu ? 'position: absolute' : '') ">
         <img src="@/assets/img/logo.svg" alt="site logo">
         <div class="right-side-wrapper">
             <NavList></NavList>
@@ -7,11 +7,11 @@
         </div>
 
         <div class="mobile-menu">
-            <MenuButton v-on:changeStateMenu="changeStateMenu"></MenuButton>
-            <c-drawer :isOpen="isOpen" placement="right" :on-close="close">
-                <c-drawer-overlay />
+            <MenuButton></MenuButton>
+            <c-drawer :isOpen="isOpenedMenu" placement="right" :on-close="close">
+                <c-drawer-overlay/>
                 <c-drawer-content bg="#112240" :maxW="400">
-                    <c-drawer-body  py="100">
+                    <c-drawer-body py="100">
                         <CFlex direction="column" align="center" justify="center">
                             <NavList></NavList>
                             <BaseButton>Resume</BaseButton>
@@ -34,23 +34,28 @@ import {
     CDrawerContent,
     CFlex,
 } from '@chakra-ui/vue';
+import {mapState, mapMutations} from 'vuex';
 
 export default {
     name: "MainHeader",
     data() {
-        return {
-            isOpen: false
-        }
-    },
-    methods: {
-      changeStateMenu() {
-          this.isOpen = !this.isOpen;
-      },
-      close() {
-          this.isOpen = false
-      }
+        return {}
     },
 
+    methods: {
+        ...mapMutations([
+            'changeStateMenu'
+        ]),
+
+        close() {
+            this.changeStateMenu()
+        }
+    },
+    computed: {
+        ...mapState([
+            'isOpenedMenu'
+        ])
+    },
     components: {
         NavList,
         BaseButton,
@@ -95,7 +100,7 @@ export default {
     .mobile-menu {
         display: none;
 
-        &__list >>> .list {
+        &__list > > > .list {
             flex-direction: column;
         }
 

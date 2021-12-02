@@ -1,5 +1,8 @@
 <template>
-    <header class="main-header" :style="(isOpenedMenu ? 'position: absolute' : '') ">
+    <header class="main-header animate__animated"
+            :class="!isShowHeader ? 'animate__fadeOutUp' : 'animate__fadeInDown'"
+            :style="(isOpenedMenu ? 'position: absolute' : '') "
+    >
         <img src="@/assets/img/logo.svg" alt="site logo">
         <div class="right-side-wrapper">
             <NavList></NavList>
@@ -39,13 +42,21 @@ import {mapState, mapMutations} from 'vuex';
 export default {
     name: "MainHeader",
     data() {
-        return {}
+        return {
+            isShowHeader: true
+        }
     },
 
+    created() {
+        window.addEventListener('scroll', this.scrollHandler)
+    },
     methods: {
         ...mapMutations([
             'changeStateMenu'
         ]),
+        scrollHandler() {
+            this.isShowHeader = window.pageYOffset === 0
+        },
 
         close() {
             this.changeStateMenu()

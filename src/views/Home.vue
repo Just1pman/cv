@@ -3,7 +3,7 @@
         <section class="hero-section section">
             <div class="container">
                 <div class="hero-section__inner">
-                    <b class="hero-section__intro">Hi, my name is</b>
+                    <b class="hero-section__intro">Hi1, my name is</b>
                     <h1 class="hero-section__title big-heading">Alexander Olkhovik</h1>
                     <h2 class="hero-section__sub-title big-heading">I build things for the web.</h2>
                     <p class="hero-section__description">

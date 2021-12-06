@@ -1,16 +1,16 @@
 <template>
     <div id="app">
-        <Frontend></Frontend>
+        <router-view>
+
+        </router-view>
     </div>
 </template>
 
 <script>
-import Frontend from "@/views/base/Frontend";
 
 export default {
     name: "MainHeader",
     components: {
-        Frontend
     }
 }
 </script>
